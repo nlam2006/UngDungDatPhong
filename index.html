@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Haven Hotel - Đặt phòng trực tuyến</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
+<div id="pageLoader" class="page-loader">
+    <div class="loader-ring"></div>
+    <span>Đang tải Haven Hotel...</span>
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="topbar">
+
+    <!-- LOGO -->
+
+    <div class="brand" onclick="go('home')">
+        <span>H</span>
+        HAVEN HOTEL
+    </div>
+
+
+    <!-- MENU -->
+
+    <nav>
+
+        <a href="#home"
+           class="nav-link active"
+           data-target="home"
+           onclick="go('home')">
+            Trang chủ
+        </a>
+
+        <a href="#rooms"
+           class="nav-link"
+           data-target="rooms"
+           onclick="go('rooms')">
+            Phòng
+        </a>
+
+        <a href="#bookings"
+           class="nav-link"
+           data-target="bookings"
+           onclick="go('bookings')">
+            Đặt phòng của tôi
+        </a>
+
+        <a href="#contact"
+           class="nav-link"
+           data-target="contact"
+           onclick="go('contact')">
+            Liên hệ
+        </a>
+
+    </nav>
+
+
+    <!-- HEADER ACTION -->
+
+    <div class="header-actions">
+
+        <button
+            class="icon-btn"
+            onclick="go('bookings')">
+            ♧
+        </button>
+
+
+        <!-- QUAN TRỌNG:
+             Có id="loginButton"
+        -->
+
+        <button
+            id="loginButton"
+            class="btn outline"
+            onclick="openLogin()">
+
+            Đăng nhập
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section id="home" class="hero">
+
+    <div class="hero-overlay">
+
+        <div class="hero-copy">
+
+            <p class="kicker">
+                TRẢI NGHIỆM NGHỈ DƯỠNG
+            </p>
+
+            <h1>
+                Một kỳ nghỉ đáng nhớ
+                <br>
+                bắt đầu từ đây.
+            </h1>
+
+            <p>
+                Không gian thanh lịch, dịch vụ tận tâm
+                và những căn phòng được thiết kế
+                cho sự thoải mái của bạn.
+            </p>
+
+        </div>
+
+
+        <!-- TÌM PHÒNG -->
+
+        <div class="search-panel">
+
+            <div>
+
+                <label>
+                    NHẬN PHÒNG
+                </label>
+
+                <input
+                    id="searchIn"
+                    type="date">
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    TRẢ PHÒNG
+                </label>
+
+                <input
+                    id="searchOut"
+                    type="date">
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    KHÁCH
+                </label>
+
+                <select id="searchGuests">
+
+                    <option value="1">
+                        1
+                    </option>
+
+                    <option value="2" selected>
+                        2
+                    </option>
+
+                    <option value="3">
+                        3
+                    </option>
+
+                    <option value="4">
+                        4
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="btn gold"
+                onclick="searchRooms()">
+
+                Tìm phòng
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TRUST
+===================================================== -->
+
+<section class="trust">
+
+    <div class="trust-item">
+
+        <b>
+            ★ 4.8/5
+        </b>
+
+        <span>
+            Đánh giá khách hàng
+        </span>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <b>
+            24/7
+        </b>
+
+        <span>
+            Hỗ trợ khách hàng
+        </span>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <b>
+            100%
+        </b>
+
+        <span>
+            Xác nhận trực tuyến
+        </span>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <b>
+            6+
+        </b>
+
+        <span>
+            Phòng & hạng phòng
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ROOMS
+===================================================== -->
+
+<section id="rooms" class="section">
+
+    <div class="section-title">
+
+        <div>
+
+            <p class="kicker">
+                KHÔNG GIAN NGHỈ DƯỠNG
+            </p>
+
+            <h2>
+                Chọn căn phòng của bạn
+            </h2>
+
+        </div>
+
+
+        <div class="filters">
+
+            <select
+                id="typeFilter"
+                onchange="renderRooms()">
+
+                <option value="all">
+                    Tất cả hạng phòng
+                </option>
+
+                <option value="Standard">
+                    Standard
+                </option>
+
+                <option value="Deluxe">
+                    Deluxe
+                </option>
+
+                <option value="Family">
+                    Family
+                </option>
+
+            </select>
+
+
+            <select
+                id="sortFilter"
+                onchange="renderRooms()">
+
+                <option value="default">
+                    Sắp xếp
+                </option>
+
+                <option value="low">
+                    Giá thấp → cao
+                </option>
+
+                <option value="high">
+                    Giá cao → thấp
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="roomGrid"
+        class="room-grid">
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EXPERIENCE
+===================================================== -->
+
+<section class="experience">
+
+    <div class="experience-image">
+    </div>
+
+
+    <div class="experience-copy">
+
+        <p class="kicker">
+            TẠI HAVEN HOTEL
+        </p>
+
+
+        <h2>
+            Không chỉ là một căn phòng.
+        </h2>
+
+
+        <p>
+            Mỗi chi tiết được chuẩn bị để bạn
+            có một kỳ nghỉ thoải mái:
+            giường êm, không gian yên tĩnh,
+            Wi-Fi tốc độ cao và đội ngũ luôn
+            sẵn sàng hỗ trợ.
+        </p>
+
+
+        <div class="amenities">
+
+            <span>
+                ✓ Bữa sáng
+            </span>
+
+            <span>
+                ✓ Wi-Fi miễn phí
+            </span>
+
+            <span>
+                ✓ Lễ tân 24/7
+            </span>
+
+            <span>
+                ✓ Dọn phòng
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     BOOKINGS
+===================================================== -->
+
+<section
+    id="bookings"
+    class="section light">
+
+    <div class="section-title">
+
+        <div>
+
+            <p class="kicker">
+                TÀI KHOẢN
+            </p>
+
+            <h2>
+                Đặt phòng của tôi
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div id="bookingList">
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ADMIN
+===================================================== -->
+
+<section
+    id="admin"
+    class="section">
+
+    <div class="section-title">
+
+        <div>
+
+            <p class="kicker">
+                QUẢN TRỊ
+            </p>
+
+            <h2>
+                Quản lý khách sạn
+            </h2>
+
+        </div>
+
+
+        <button
+            class="btn dark"
+            onclick="openAddRoom()">
+
+            + Thêm phòng
+
+        </button>
+
+    </div>
+
+
+    <!-- THỐNG KÊ -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <b id="sRooms">
+                0
+            </b>
+
+            <span>
+                Tổng phòng
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <b id="sAvailable">
+                0
+            </b>
+
+            <span>
+                Phòng trống
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <b id="sBookings">
+                0
+            </b>
+
+            <span>
+                Đơn xác nhận
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <b id="sRevenue">
+                0đ
+            </b>
+
+            <span>
+                Doanh thu
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- BẢNG QUẢN LÝ -->
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Phòng
+                    </th>
+
+                    <th>
+                        Hạng
+                    </th>
+
+                    <th>
+                        Sức chứa
+                    </th>
+
+                    <th>
+                        Giá/đêm
+                    </th>
+
+                    <th>
+                        Trạng thái
+                    </th>
+
+                    <th>
+                        Thao tác
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="adminTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section
+    id="contact"
+    class="contact">
+
+    <div>
+
+        <p class="kicker">
+            LIÊN HỆ
+        </p>
+
+
+        <h2>
+            Chúng tôi sẵn sàng hỗ trợ.
+        </h2>
+
+
+        <p>
+            📞 024 1234 5678
+            &nbsp; · &nbsp;
+            ✉ hello@havenhotel.vn
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <b>
+            Haven Hotel
+        </b>
+
+
+        <p>
+            123 Đường Hoàng Gia, Hà Nội
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    © 2026 Haven Hotel
+    · Demo học phần
+    Phân tích nghiệp vụ phần mềm
+
+</footer>
+
+
+
+<!-- =====================================================
+     ROOM / BOOKING MODAL
+===================================================== -->
+
+<div
+    id="modal"
+    class="modal hidden">
+
+    <div
+        id="modalBox"
+        class="modal-box">
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     AUTH MODAL
+===================================================== -->
+
+<div
+    id="authModal"
+    class="modal hidden">
+
+    <div class="modal-box auth-box">
+
+
+        <!-- NÚT ĐÓNG -->
+
+        <button
+            class="modal-close"
+            onclick="closeAuthModal()">
+
+            ×
+
+        </button>
+
+
+
+        <!-- =================================================
+             ĐĂNG NHẬP
+        ================================================== -->
+
+        <div id="loginForm">
+
+            <div class="modal-title">
+
+                <span class="eyebrow">
+                    HAVEN HOTEL
+                </span>
+
+                <h2>
+                    Đăng nhập
+                </h2>
+
+                <p>
+                    Đăng nhập để quản lý
+                    đặt phòng của bạn.
+                </p>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Nhập email">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Mật khẩu
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Nhập mật khẩu">
+
+            </div>
+
+
+            <button
+                class="btn btn-primary btn-full"
+                onclick="login()">
+
+                Đăng nhập
+
+            </button>
+
+
+            <p class="auth-switch">
+
+                Chưa có tài khoản?
+
+                <button
+                    type="button"
+                    onclick="showRegister()">
+
+                    Đăng ký ngay
+
+                </button>
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ĐĂNG KÝ
+        ================================================== -->
+
+        <div
+            id="registerForm"
+            style="display:none;">
+
+            <div class="modal-title">
+
+                <span class="eyebrow">
+                    HAVEN HOTEL
+                </span>
+
+                <h2>
+                    Tạo tài khoản
+                </h2>
+
+                <p>
+                    Đăng ký tài khoản để đặt
+                    phòng dễ dàng hơn.
+                </p>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Họ và tên
+                </label>
+
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="Nguyễn Văn A">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="registerEmail"
+                    placeholder="example@gmail.com">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Số điện thoại
+                </label>
+
+                <input
+                    type="tel"
+                    id="registerPhone"
+                    placeholder="0123456789">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Mật khẩu
+                </label>
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Nhập mật khẩu">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Nhập lại mật khẩu
+                </label>
+
+                <input
+                    type="password"
+                    id="registerPassword2"
+                    placeholder="Nhập lại mật khẩu">
+
+            </div>
+
+
+            <button
+                class="btn btn-primary btn-full"
+                onclick="register()">
+
+                Đăng ký
+
+            </button>
+
+
+            <p class="auth-switch">
+
+                Đã có tài khoản?
+
+                <button
+                    type="button"
+                    onclick="showLogin()">
+
+                    Đăng nhập
+
+                </button>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    id="toast"
+    class="toast">
+
+</div>
+
+
+
+<!-- =====================================================
+     BACK TO TOP
+===================================================== -->
+
+<button
+    id="topBtn"
+    class="top-btn"
+    onclick="window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })">
+
+    ↑
+
+</button>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+
+
+<!-- =====================================================
+     FIX AUTH MODAL CLOSE
+===================================================== -->
+
+<script>
+
+function closeAuthModal() {
+
+    const auth = document.getElementById("authModal");
+
+    if (!auth) return;
+
+    auth.classList.add("hidden");
+
+    auth.style.display = "none";
+}
+
+
+/* Khi mở đăng nhập */
+
+const oldOpenLogin = window.openLogin;
+
+window.openLogin = function () {
+
+    const auth =
+        document.getElementById("authModal");
+
+    if (auth) {
+
+        auth.classList.remove("hidden");
+
+        auth.style.display = "flex";
+
+    }
+
+    if (typeof oldOpenLogin === "function") {
+
+        oldOpenLogin();
+
+    }
+
+};
+
+
+/* Khi trang tải */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const auth =
+            document.getElementById("authModal");
+
+        if (auth) {
+
+            auth.classList.add("hidden");
+
+            auth.style.display = "none";
+
+        }
+
+        if (
+            typeof updateLoginButton === "function"
+        ) {
+
+            updateLoginButton();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
